@@ -1,6 +1,6 @@
 name: Deploy Example Site (GH Pages)
 env:
-  GO_VERSION: "1.21"
+  GO_VERSION: "1.23"
   HUGO_VERSION: "0.147.8"
   GH_PAGES_URL: https://tasooneasia.github.io/nginx-hugo-theme
 
