@@ -1,0 +1,49 @@
+name: Deploy Example Site (GH Pages)
+env:
+  GO_VERSION: "1.21"
+  HUGO_VERSION: "0.147.8"
+  GH_PAGES_URL: https://tasooneasia.github.io/nginx-hugo-theme
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Cancel a in-prog deployments
+concurrency:
+  group: pages-cd
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: false
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+      - name: Checkout repo
+        uses: actions/checkout@v5
+      - name: Build exampleSite
+        working-directory: exampleSite
+        run: hugo --gc -e production --baseURL=$GH_PAGES_URL
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: exampleSite/public
+      - name: Deploy artifact to GH Pages
+        uses: actions/deploy-pages@v4.0.5
+
+
