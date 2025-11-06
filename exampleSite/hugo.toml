@@ -27,5 +27,5 @@ maxAge = -1
   enable_last_modified = true
   coveo_search_redirect = "/search.html"
   [params.featureFlags]
-    disable_coveo = true
+    disable_coveo = false
     disable_qualtrics = true
