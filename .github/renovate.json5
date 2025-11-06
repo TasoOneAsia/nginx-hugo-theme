@@ -1,0 +1,39 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "customManagers:biomeVersions",
+    "helpers:pinGitHubActionDigestsToSemver",
+    ":configMigration",
+    "abandonments:recommended"
+  ],
+  "prHourlyLimit": 0,
+  "packageRules": [
+    {
+      "enabled": false,
+      "matchManagers": "npm",
+      "matchUpdateTypes": ["major"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GH Action Deps"
+    },
+    {
+      "matchManagers": ["gomod"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["ubuntu"],
+      "allowedVersions": "22"
+    },
+    {
+      "matchFileNames": ["tests/package.json", "performance/package.json"],
+      "groupName": "NPM Testing Deps",
+      "description": "Non-Major version bumps to testing/performance deps"
+    }
+  ],
+  "rangeStrategy": "pin",
+  "commitMessagePrefix": "Deps:",
+  "commitMessageLowerCase": "never",
+  "labels": ["dependency"]
+}
