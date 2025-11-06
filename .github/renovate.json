@@ -10,5 +10,6 @@
   ],
   "commitMessagePrefix": "Chore:",
   "commitMessageLowerCase": "never",
+  "rangeStrategy": "bump",
   "labels": ["dependency"]
 }
