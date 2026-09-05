@@ -19,7 +19,7 @@ jobs:
           version: ${{ steps.get-playwright-version.outputs.version }}
         steps:
           - name: Checkout code
-            uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+            uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
           - name: Get version from package.json
             id: get-playwright-version
             run: |
@@ -37,15 +37,15 @@ jobs:
         steps: 
           # Checkout the repository so the workflow has access to the code
           - name: Checkout code
-            uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+            uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3.7.0
           - name: Setup Hugo
-            uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3.0.0
+            uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3.2.1
             with:
                 hugo-version: '0.147.8'
                 extended: true
-          - uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00 #v6.0.0
+          - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
             with: 
-              go-version: '1.25.4'
+              go-version: '1.27.1'
           - name: Install dependencies
             run: cd tests && npm ci
           - name: Run Playwright tests
